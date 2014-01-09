@@ -1,20 +1,23 @@
-%html
-  %head
-    %title My Sinatra App
-    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css", :rel => "stylesheet"}
-    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css", :rel => "stylesheet"}
-    %script{:type => "text/javascript", :src => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"}
-    :css
-      body {padding-top: 40px;} 
-  %body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-          %a{:href => "/", :class => "navbar-brand"} Norsk Dvorak
-        .collapse.navbar-collapse
-          %ul{:class => "nav navbar-nav"}
-            %li
-              %a{:href => "/"} Forside
-    .container
-      %h1 Hello World
-      %p Your app is up and running!
+%h1 Norsk Dvorak
+%h2 Nedlastning
+%ul
+  %li
+    %a{:href => "/downloads/nodvorak-win.zip"} Windows 2000 og nyere
+  %li <a href="/downloads/NorwegianDvorak-1.0.dmg">Mac OS X 10.2 og nyere.</a> (Installer for: <a href="https://github.com/vibrog/no-dvorak-osx">https://github.com/vibrog/no-dvorak-osx</a>)
+  %li
+    %a{:href => "http://www.stenling.no/dvorak/Mac.htm"} Eldre Mac OS
+  %li
+    %a{:href => "/linux"} Linux
+%h2 Hva er Dvorak tastatur?
+%p Dvorak tastatur har en annen plassering av tastene enn tradisjonelle tastatur. Plasseringen er tilpasset språket slik at tegnkombinasjoner som forekommer ofte er enklere å skrive. Vokalene er plassert på venstre side og de fleste konsonantene på høyre side. Dermed veksler skriving ofte mellom høyre og venstre hånd – og belastningen fordeles. Ledetastene er valgt slik at en stor andel av bokstavene kan skrives uten å flytte fingrene fra ledetastraden. Om lag 63 % av tastetrykkene skjer på ledetastraden med Dvorak. Til sammenligning oppnår QWERTY-tastaturet bare 34 % av tastetrykkene på ledetastraden. Oppsettet er dessuten utformet slik at naturligefingerbevegelser forekommer oftest. Dette gir roligere, behageligere og raskere skriving.
+%a{:href => "/images/Dvoraktastatur.png"}
+  %img{:src => "/images/Dvoraktastatur.png", :width => "500"}
+%h2 Forebygger Dvorak belastningsskader?
+%p Vitenskapelige studier rundt belastningsskader og Dvorak er ennå ikke utført. Imidlertid er det mange brukere som benytter Dvorak nettopp fordi reduserte fingerbevegelser gir positive effekter. Siden Dvorak-oppsettet bruker høyre hånd mer enn QWERTY, kan det være en fordel å benytte mus på venstre side.
+%h2 Hvordan endre tastaturet til Dvorak?
+%p Det finnes ingen norske tastatur som er ferdig tilpasset fra fabrikken. Imidlertid kan vanlige tastatur lett endres ved å installere en tastaturdriver tilpasset Dvorak. Det er utformet et standardisert oppsett som inkluderer de norske tegnene ÆØÅ. Norske Dvorak-drivere er tilgjengelig for Windows 2000 og nyere, samt Mac og Linux.
+%p Etter at tastaturoppsettet er endret bør man enten flytte tastene eller klistre på ekstra tastaturmerking. De fleste vanlige tastatur har taster som kan flyttes ved hjelp av en skrutrekker.
+%h2 Hvordan lære det nye oppsettet?
+%p Det finnes kun opplæringsprogrammer for amerikansk Dvorak – men disse fungerer bra også for norsk oppsett siden forskjellene er små. Dersom du allerede behersker tifingersystemet for QWERTY er det tilstrekkelig å gå gjennom en kort nettbasert opplæring kalt ”A Basic Course in Dvorak – ABCD” på nettstedet www.karelia.com/abcd/abcd.html. I opplæringsfasen bør du unngå å veksle mellom Dvorak og tradisjonelt tastatur. Senere vil de fleste kunne bruke begge tastaturtypene på samme vis som man kan snakke flere språk. Det er en fordel å gjøre omleggingen i en rolig periode uten for mange tidsfrister. Tålmodighet er nødvendig.
+%h2 Hvor lang tid tar det å lære Dvorak?
+%p I løpet av ei uke lærer de fleste det nye oppsettet. Etter ytterligere tre uker er hastigheten forbedret og antall feiltastinger redusert. Full hastighet oppnår man etter lengre tids bruk.

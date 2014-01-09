@@ -1,0 +1,22 @@
+%h1 Linux
+%h2 Norsk dvorak i X11
+%p For Xfree86 og X.org 6 endrer du tastaturoppsettet i /etc/X11/xorg.conf eller /etc/X11/XF86Config (avhengig av om du bruker X.org eller Xfree86) så det står:
+%pre
+  = preserve do
+    :escaped
+      Option  "XkbLayout" "dvorak"
+      Option  "XkbVariant" "no"
+%p For X.org 7 endrer du tastaturoppsettet i /etc/X11/xorg.conf så det står:
+%pre
+  = preserve do
+    :escaped
+      Option  "XkbLayout" "no"
+      Option  "XkbVariant" "dvorak"
+%h2 Norsk dvorak i konsollen
+%p NB! Dette er kun prøvd i gentoo og arch, og fungerer ikke nødvendigvis i andre distribusjoner.
+%p Installer nyeste versjon av kbd (1.14.1 eller nyere)<br>Endre /etc/conf.d/keymaps så det står:
+%pre
+  :escaped
+    KEYMAP="dvorak/no"
+%hr
+%p Spørsmål? Kontakt meg på dvorak@tg90nor.net
