@@ -7,6 +7,6 @@ require "./app"
  
 set :run, false
 set :raise_errors, true
-set :static, true
+set :server, :puma
  
 run Sinatra::Application

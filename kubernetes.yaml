@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dvorak-nginx-conf
+data:
+  nginx.conf: |
+    server {
+      listen 80;
+      root /app/public;
+      location / {
+        gzip_static on;
+        expires max;
+        add_header Cache-Control public;
+      }
+    }
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dvorak-tg90nor-net
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dvorak-tg90nor-net
+    spec:
+      containers:
+        - name: dvorak-sinatra
+          image: gcr.io/crewpicker/dvorak-tg90nor-net
+          ports:
+            - containerPort: 3000
+        - name: dvorak-nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              name: dvorak-nginx-conf-volume
+            - mountPath: /app/public
+              name: dvorak-static-data
+      initContainers:
+        - name: dvorak-init
+          image: gcr.io/crewpicker/dvorak-tg90nor-net
+          command: ['sh', '-c', 'sleep 5; cp -r /app/public/* /public/']
+          volumeMounts:
+            - mountPath: /public
+              name: dvorak-static-data
+      volumes:
+        - name: dvorak-nginx-conf-volume
+          configMap:
+            name: dvorak-nginx-conf
+        - name: dvorak-static-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvorak-sinatra
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: dvorak-tg90nor-net
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvorak-nginx
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: dvorak-tg90nor-net
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dvorak-tg90nor-net-https
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - hosts:
+    - dvorak.tg90nor.net
+    secretName: dvorak-tls
+  rules:
+  - host: dvorak.tg90nor.net
+    http:
+      paths:
+      - path: /downloads/*
+        backend:
+          serviceName: dvorak-nginx
+          servicePort: 80
+      - path: /images/*
+        backend:
+          serviceName: dvorak-nginx
+          servicePort: 80
+      - path: /*
+        backend:
+          serviceName: dvorak-sinatra
+          servicePort: 80
