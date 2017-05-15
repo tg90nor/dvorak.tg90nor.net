@@ -1,5 +1,11 @@
 set :haml, :format => :html5
- 
+
+before do
+  if !request.ssl?
+    redirect "https://dvorak.tg90nor.net/"
+  end
+end
+
 get "/" do
   haml :index
 end
