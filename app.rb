@@ -1,7 +1,7 @@
 set :haml, :format => :html5
 
 before do
-  if !request.ssl?
+  if !request.ssl? && request.path != "/health"
     redirect "https://dvorak.tg90nor.net/"
   end
 end
@@ -32,4 +32,7 @@ get "/lenker" do
 end
 get "/lenker.php" do
   haml :lenker
+end
+get "/health" do
+  "Everything is fine"
 end
