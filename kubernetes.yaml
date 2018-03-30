@@ -39,6 +39,13 @@ spec:
             timeoutSeconds: 2
             successThreshold: 1
             failureThreshold: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
         - name: dvorak-nginx
           image: nginx
           ports:
@@ -48,6 +55,13 @@ spec:
               name: dvorak-nginx-conf-volume
             - mountPath: /app/public
               name: dvorak-static-data
+          resources:
+            requests:
+              cpu: 30m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
       initContainers:
         - name: dvorak-init
           image: gcr.io/crewpicker/dvorak-tg90nor-net:3
