@@ -20,7 +20,7 @@ kind: Deployment
 metadata:
   name: dvorak-tg90nor-net
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
